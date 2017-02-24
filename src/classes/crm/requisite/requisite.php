@@ -7,32 +7,30 @@ use Bitrix24\Bitrix24Entity;
 class Requisite extends Bitrix24Entity
 {
     /**
-     * Get list of lead items.
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_list.php
+     * Get list of requisite.
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_list.php
      * @param array $order - order of task items
      * @param array $filter - filter array
      * @param array $select - array of collumns to select
-     * @param integer $start - entity number to start from (usually returned in 'next' field of previous 'crm.invoice.list' API call)
      * @return array
      */
-    public function getList($order = array(), $filter = array(), $select = array(), $start = 0)
+    public function getList($order = array(), $filter = array(), $select = array())
     {
         $fullResult = $this->client->call(
             'crm.requisite.list',
             array(
                 'order' => $order,
                 'filter'=> $filter,
-                'select'=> $select,
-                'start'	=> $start
+                'select'=> $select
             )
         );
         return $fullResult;
     }
 
     /**
-     * get invoice by id
-     * @var $id integer invoice identifier
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_get.php
+     * get requisite by id
+     * @var $id integer requisite identifier
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_get.php
      * @return array
      */
     public function get($id)
@@ -46,8 +44,8 @@ class Requisite extends Bitrix24Entity
 
     /**
      * delete invoice by id
-     * @var $id integer invoice identifier
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_delete.php
+     * @var $id integer requisite identifier
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_delete.php
      * @return array
      */
     public function delete($id)
@@ -60,9 +58,9 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * Add a new invoice to CRM
+     * Add a new requisite
      * @param array $fields array of fields
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_add.php
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_add.php
      * @return array
      */
     public function add($fields = array())
@@ -75,9 +73,8 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * update invoice by id
-     * @var $fields array invoice fields to update
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_update.php
+     * Update requisite by id
+     * @var $fields array requisite fields to update
      * @return array
      */
     public function update($id, $fields)
@@ -93,8 +90,8 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * get list of invoice fields with description
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_fields.php
+     * Get list of requisite fields with description
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_fields.php
      * @return array
      */
     public function fields()
@@ -106,8 +103,8 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * Get list of lead items.
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_list.php
+     * Get list of bank details.
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_bankdetail_list.php
      * @param array $order - order of task items
      * @param array $filter - filter array
      * @param array $select - array of collumns to select
@@ -129,9 +126,9 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * get invoice by id
+     * Get bank detail by id
      * @var $id integer invoice identifier
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_get.php
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_bankdetail_get.php
      * @return array
      */
     public function bankdetailGet($id)
@@ -144,9 +141,9 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * delete invoice by id
-     * @var $id integer invoice identifier
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_delete.php
+     * delete bank detail by id
+     * @var $id integer bank detail identifier
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_bankdetail_delete.php
      * @return array
      */
     public function bankdetailDelete($id)
@@ -159,9 +156,9 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * Add a new invoice to CRM
+     * Add a new bank detail
      * @param array $fields array of fields
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_add.php
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_bankdetail_add.php
      * @return array
      */
     public function bankdetailAdd($fields = array())
@@ -174,10 +171,10 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * update invoice by id
-     * @var $id integer invoice identifier
-     * @var $fields array invoice fields to update
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_update.php
+     * Update bank detail by id
+     * @var $id integer bank detail identifier
+     * @var $fields array bank detail fields to update
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_bankdetail_update.php
      * @return array
      */
     public function bankdetailUpdate($id, $fields)
@@ -193,8 +190,8 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * get list of invoice fields with description
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_fields.php
+     * Get list of bank detail fields with description
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_bankdetail_fields.php
      * @return array
      */
     public function bankdetailFields()
@@ -206,8 +203,8 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * Get list of lead items.
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_list.php
+     * Get list of presets.
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_preset_list.php
      * @param array $order - order of task items
      * @param array $filter - filter array
      * @param array $select - array of collumns to select
@@ -229,9 +226,9 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * get invoice by id
-     * @var $id integer invoice identifier
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_get.php
+     * Get preset by id
+     * @var $id integer preset identifier
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_preset_get.php
      * @return array
      */
     public function presetGet($id)
@@ -244,9 +241,9 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * delete invoice by id
+     * Delete preset by id
      * @var $id integer invoice identifier
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_delete.php
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_preset_delete.php
      * @return array
      */
     public function presetDelete($id)
@@ -259,9 +256,9 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * Add a new invoice to CRM
+     * Add a new preset
      * @param array $fields array of fields
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_add.php
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_preset_add.php
      * @return array
      */
     public function presetAdd($fields = array())
@@ -274,10 +271,10 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * update invoice by id
-     * @var $id integer invoice identifier
-     * @var $fields array invoice fields to update
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_update.php
+     * Update preset by id
+     * @var $id integer preset identifier
+     * @var $fields array preset fields to update
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_preset_update.php
      * @return array
      */
     public function presetUpdate($id, $fields)
@@ -293,8 +290,8 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * get list of invoice fields with description
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_fields.php
+     * Get list of presets fields with description
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_preset_fields.php
      * @return array
      */
     public function presetFields()
@@ -306,8 +303,8 @@ class Requisite extends Bitrix24Entity
     }
 
     /**
-     * get list of invoice fields with description
-     * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_invoice_fields.php
+     * Get list of preset countries
+     * @link http://dev.1c-bitrix.ru/rest_help/crm/requisite/methods/crm_requisite_preset_countries.php
      * @return array
      */
     public function presetCountries()

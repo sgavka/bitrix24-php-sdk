@@ -513,8 +513,8 @@ class Bitrix24 implements iBitrix24
             CURLOPT_TIMEOUT => 5,
             CURLOPT_USERAGENT => strtolower(__CLASS__ . '-PHP-SDK/v' . self::VERSION),
             CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => http_build_query($additionalParameters, null, '&'),
-//            CURLOPT_POSTFIELDS => http_build_query($additionalParameters),
+//            CURLOPT_POSTFIELDS => http_build_query($additionalParameters, null, '&'),
+            CURLOPT_POSTFIELDS => http_build_query($additionalParameters),
             CURLOPT_URL => $url
         );
 
@@ -709,8 +709,7 @@ class Bitrix24 implements iBitrix24
      * @param $arRequestResult
      * @param $methodName
      * @param array $additionalParameters
-<<<<<<< HEAD
-     * @return null
+     *
      * @throws Bitrix24ApiException
      * @throws Bitrix24EntityNotFoundException
      * @throws Bitrix24MethodNotFoundException
@@ -720,17 +719,8 @@ class Bitrix24 implements iBitrix24
      * @throws Bitrix24TokenIsExpiredException
      * @throws Bitrix24TokenIsInvalidException
      * @throws Bitrix24WrongClientException
-=======
      *
      * @return null
-     *
-     * @throws Bitrix24ApiException
-     * @throws Bitrix24TokenIsInvalidException
-     * @throws Bitrix24TokenIsExpiredException
-     * @throws Bitrix24WrongClientException
-     * @throws Bitrix24MethodNotFoundException
-     * @throws Bitrix24PaymentRequiredException
->>>>>>> 5574534b51225426a759cbff90ea6403343ae1fa
      */
     protected function handleBitrix24APILevelErrors(
         $arRequestResult,

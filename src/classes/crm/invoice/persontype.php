@@ -24,7 +24,7 @@ class PersonType extends Bitrix24Entity
     }
 
     /**
-     * get list of person type fields with description
+     * Get list of person type fields with description
      * @link http://dev.1c-bitrix.ru/rest_help/crm/invoice/crm_persontype_fields.php
      * @return array
      */
