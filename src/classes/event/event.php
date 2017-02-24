@@ -1,7 +1,7 @@
 <?php
 namespace Bitrix24\Event;
 use Bitrix24\Bitrix24Entity;
-use Bitrix24\Bitrix24Exception;
+use Bitrix24\Exceptions\Bitrix24Exception;
 use Bitrix24\Presets\Event\Event as EventType;
 
 /**
@@ -42,16 +42,18 @@ class Event extends Bitrix24Entity
      * @return array
      */
 	public function getList($scope = null)
-	{
-	    if (is_null($scope)) {
+    {
+        if (is_null($scope)) {
             $params = array();
         } else {
             $params = array('scope' => $scope);
         }
 
         $fullResult = $this->client->call('events', $params);
-		return $fullResult;
-	}
+
+        return $fullResult;
+    }
+
 	/**
 	 * Register new event handler. Work only for user with portal administrator rights
 	 * @link http://dev.1c-bitrix.ru/rest_help/general/event_bind.php

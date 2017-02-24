@@ -1,7 +1,7 @@
 <?php
 namespace Bitrix24\CRM;
 use Bitrix24\Bitrix24Entity;
-use Bitrix24\Bitrix24Exception;
+use Bitrix24\Exceptions\Bitrix24Exception;
 
 /**
  * Class Company

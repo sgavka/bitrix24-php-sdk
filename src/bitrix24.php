@@ -12,6 +12,7 @@ namespace Bitrix24;
 use Bitrix24\Contracts\iBitrix24;
 
 use Bitrix24\Exceptions\Bitrix24BadGatewayException;
+use Bitrix24\Exceptions\Bitrix24CurleOperationTimeoutedException;
 use Bitrix24\Exceptions\Bitrix24EntityNotFoundException;
 use Bitrix24\Exceptions\Bitrix24Exception;
 use Bitrix24\Exceptions\Bitrix24IoException;
@@ -513,7 +514,8 @@ class Bitrix24 implements iBitrix24
             CURLOPT_USERAGENT => strtolower(__CLASS__ . '-PHP-SDK/v' . self::VERSION),
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => http_build_query($additionalParameters, null, '&'),
-            CURLOPT_URL => $url /*. '.json?' . http_build_query($additionalParameters)*/
+//            CURLOPT_POSTFIELDS => http_build_query($additionalParameters),
+            CURLOPT_URL => $url
         );
 
         if (is_array($this->customCurlOptions)) {
@@ -539,7 +541,12 @@ class Bitrix24 implements iBitrix24
                 if (false === in_array($curlErrorNumber, $retryableErrorCodes, true) || !$retriesCnt) {
                     $this->log->error($errorMsg, $this->getErrorContext());
                     curl_close($curl);
-                    throw new Bitrix24IoException($errorMsg, $curlErrorNumber);
+
+                    if ($curlErrorNumber == CURLE_OPERATION_TIMEOUTED) {
+                        throw new Bitrix24CurleOperationTimeoutedException($errorMsg);
+                    }
+
+                    throw new Bitrix24IoException($errorMsg);
                 } else {
                     $this->log->warning($errorMsg, $this->getErrorContext());
                 }
@@ -635,10 +642,6 @@ class Bitrix24 implements iBitrix24
 //		{
         $url = 'https://' . $this->domain . '/rest/' . $methodName;
 //		}
-//        $tmpArr = array();
-//        $tmpArr['auth'] = $this->accessToken;
-
-//        $additionalParameters = array_merge($tmpArr, $additionalParameters);
         $additionalParameters['auth'] = $this->accessToken;
         // save method parameters for debug
         $this->methodParameters = $additionalParameters;
@@ -653,7 +656,6 @@ class Bitrix24 implements iBitrix24
             'METHOD_NAME' => $methodName,
             'METHOD_PARAMETERS' => $additionalParameters
         ));
-
         $requestResult = $this->executeRequest($url, $additionalParameters);
         // check errors and throw exception if errors exists
         $this->handleBitrix24APILevelErrors($requestResult, $methodName, $additionalParameters);
@@ -707,6 +709,7 @@ class Bitrix24 implements iBitrix24
      * @param $arRequestResult
      * @param $methodName
      * @param array $additionalParameters
+<<<<<<< HEAD
      * @return null
      * @throws Bitrix24ApiException
      * @throws Bitrix24EntityNotFoundException
@@ -717,6 +720,17 @@ class Bitrix24 implements iBitrix24
      * @throws Bitrix24TokenIsExpiredException
      * @throws Bitrix24TokenIsInvalidException
      * @throws Bitrix24WrongClientException
+=======
+     *
+     * @return null
+     *
+     * @throws Bitrix24ApiException
+     * @throws Bitrix24TokenIsInvalidException
+     * @throws Bitrix24TokenIsExpiredException
+     * @throws Bitrix24WrongClientException
+     * @throws Bitrix24MethodNotFoundException
+     * @throws Bitrix24PaymentRequiredException
+>>>>>>> 5574534b51225426a759cbff90ea6403343ae1fa
      */
     protected function handleBitrix24APILevelErrors(
         $arRequestResult,
