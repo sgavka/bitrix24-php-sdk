@@ -542,7 +542,7 @@ class Bitrix24 implements iBitrix24
                     $this->log->error($errorMsg, $this->getErrorContext());
                     curl_close($curl);
 
-                    if ($curlErrorNumber == CURLE_OPERATION_TIMEOUTED) {
+                    if ($curlErrorNumber == CURLE_OPERATION_TIMEOUTED || $curlErrorNumber == CURLE_SSL_CONNECT_ERROR ) {
                         throw new Bitrix24CurleOperationTimeoutedException($errorMsg);
                     }
 
@@ -659,6 +659,7 @@ class Bitrix24 implements iBitrix24
         $requestResult = $this->executeRequest($url, $additionalParameters);
         // check errors and throw exception if errors exists
         $this->handleBitrix24APILevelErrors($requestResult, $methodName, $additionalParameters);
+
         // handling security sign for secure api-call
         if ($isSecureCall) {
             if (array_key_exists('signature', $requestResult)) {
